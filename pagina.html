@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yerson Mariqueo Sánchez</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --primary-color: #920000;
+            /* Azul eléctrico profesional */
+            --secondary-color: #000428;
+            /* Azul oscuro */
+            --accent-color: #ff821c;
+            /* Naranja para resaltar detalles */
+            --text-color: #333;
+            --bg-light: #eabdbd;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            /* Desplazamiento suave al hacer clic en el menú */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+            padding-top: 60px;
+            /* Espacio para que el menú fijo no tape el contenido al subir */
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* --- ANIMACIONES AL SCROLL (La parte interactiva) --- */
+        .hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            /* Empieza más abajo */
+            transition: all 1s ease-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(193, 3, 3, 0.95);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- HERO (ENCABEZADO) --- */
+        header {
+            height: 100vh;
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            margin-top: -60px;
+            /* Compensa el padding-top del body */
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: fadeIn 1.7s ease-in;
+        }
+
+        header h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* --- SECCIONES --- */
+        section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        .center-title-cont {
+            text-align: center;
+        }
+
+        /* --- TARJETAS DE EXPERIENCIA --- */
+        .experience-card {
+            background: var(--white);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        .experience-card:hover {
+            transform: scale(1.02);
+        }
+
+        .experience-card h3 {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+        }
+
+        .experience-card .date {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .experience-card ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        /* --- HABILIDADES --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .skill-item {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--secondary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* Keyframes para entrada inicial */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* --- RESPONSIVE MÓVIL (CORREGIDO) --- */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+                padding: 0 10px;
+            }
+
+            nav {
+                padding: 10px 0;
+            }
+
+            nav ul {
+                /* Quitamos el display: none para que se vea */
+                display: flex;
+                flex-direction: row;
+                /* Mantenemos en fila */
+                flex-wrap: wrap;
+                /* Permitimos que baje a 2 lineas si es necesario */
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+                /* Reducimos margen */
+            }
+
+            nav a {
+                font-size: 0.85rem;
+                /* Texto un poco mas pequeño */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#sobre-mi">Sobre Mí</a></li>
+            <li><a href="#experiencia">Experiencia</a></li>
+            <li><a href="#formacion">Formación</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Yerson Mariqueo Sánchez</h1>
+        <h2>Técnico en Electricidad y Automatización Industrial</h2>
+        <div class="contact-info">
+            <p>📧 yerson.sanche1997@gmail.com <br> 📞 +56 9 7183 5632</p>
+            <p>📍 Negrete, R. Bio Bio</p>
+        </div>
+    </header>
+
+    <section id="sobre-mi" class="hidden">
+        <div class="center-title-cont">
+            <h2 class="section-title">Sobre Mí</h2>
+        </div>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+            Soy estudiante de la carrera de Técnico en Electricidad y Automatización Industrial en Duoc UC, con
+            formación previa como Técnico Nivel Medio en Electricidad (1er lugar de mi generación). Me especializo en
+            proyectos eléctricos en baja tensión, automatización industrial y mantenimiento. Me apasiona aprender cosas
+            nuevas y aspiro a convertirme en Ingeniero Civil Eléctrico. Destaco por mi liderazgo y capacidad de
+            resolución de problemas.
+        </p>
+    </section>
+
+    <section id="experiencia">
+        <div class="center-title-cont">
+            <h2 class="section-title hidden">Experiencia Laboral</h2>
+        </div>
+
+        <div class="experience-card hidden">
+            <h3>Práctica Profesional - Técnico Nivel Medio</h3>
+            <span class="date">SECPLAN M. de Negrete | Octubre 2024 - Enero 2025</span>
+            <ul>
+                <li>Proyección de Instalaciones Eléctricas Domiciliarias.</li>
+                <li>Levantamiento de Instalaciones Eléctricas Domiciliarias.</li>
+            </ul>
+        </div>
+
+        <div class="experience-card hidden">
+            <h3>Ayudante Eléctrico</h3>
+            <span class="date">Ahimco S.A. | Enero 2025 - Marzo 2025</span>
+            <ul>
+                <li>Instalación de canalización para Alumbrado público.</li>
+                <li>Cableado para Alumbrado público.</li>
+                <li>Conexionado de Alumbrado público.</li>
+            </ul>
+        </div>
+
+        <div class="experience-card hidden">
+            <h3>Eléctrico Independiente</h3>
+            <span class="date">Actualidad</span>
+            <ul>
+                <li>Mantenimiento de Instalaciones Eléctricas Domiciliarias.</li>
+                <li>Instalación eléctrica y elaboración de planos.</li>
+            </ul>
+        </div>
+
+        <div class="experience-card hidden">
+            <h3>Práctica Dual - Mantenimiento Electro Control</h3>
+            <span class="date">CMPC Planta Pacifico | Actualidad</span>
+            <ul>
+                <li>Mantenimiento en área de Electro control de planta de Celulosa.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="formacion" class="hidden">
+        <div class="center-title-cont">
+            <h2 class="section-title">Formación Académica</h2>
+        </div>
+        <div class="experience-card">
+            <h3>Técnico en Electricidad y Automatización Industrial</h3>
+            <span class="date">Duoc UC - Campus Nacimiento | Cursando 2° Semestre</span>
+        </div>
+        <div class="experience-card">
+            <h3>Técnico Nivel Medio en Electricidad</h3>
+            <span class="date">Liceo Polivalente La Frontera | 2022 - 2024</span>
+            <p><small>Primer lugar de la generación.</small></p>
+        </div>
+        <div class="experience-card">
+            <h3>Curso de Especialización en Domótica</h3>
+            <span class="date">Grupo Saesa - Frontel | 2024</span>
+        </div>
+    </section>
+
+    <section id="habilidades" class="hidden">
+        <div class="center-title-cont">
+            <h2 class="section-title">Habilidades</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-item">Interpretación de Planos</div>
+            <div class="skill-item">Domótica</div>
+            <div class="skill-item">Trabajo en Equipo</div>
+            <div class="skill-item">Liderazgo</div>
+            <div class="skill-item">Resolución de Conflictos</div>
+            <div class="skill-item">Licencia Clase B</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Yerson Nicolás Mariqueo Sánchez. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Esto hace la magia: Detecta cuando bajas (scroll) y muestra los elementos
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                console.log(entry)
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show'); // Agrega la clase que los hace visibles
+                } else {
+                    // entry.target.classList.remove('show'); // Si quieres que desaparezcan al subir, descomenta esto
+                }
+            });
+        });
+
+        // Seleccionamos todos los elementos ocultos
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+
+</body>
+
+</html>
